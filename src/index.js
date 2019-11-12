@@ -1,15 +1,25 @@
-import { createNoPokemons, setChild, resetInput } from './api/elements';
+import {
+  createNoPokemons,
+  createPokemonElements,
+  setChild,
+  resetInput
+} from './api/elements';
+import { getPokemonsByName, getAllPokemons } from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
 const resultsElement = document.querySelector('.results');
 
+// Get all pokemons
+const allPokemons = getAllPokemons();
+
 // Reset input and results
 resetInput(searchInput);
-setChild(resultsElement, createNoPokemons());
+const allPokemonElement = createPokemonElements(allPokemons);
+setChild(resultsElement, allPokemonElement);
 
 // Add event listeners
-debugger;
+
 /**
  * Find the correct event to listen for input changes.
  */
