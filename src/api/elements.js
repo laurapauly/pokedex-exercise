@@ -38,10 +38,12 @@ export function createPokemonElement(pokemon) {
 }
 
 export function removeChilds(parent) {
+  console.log(`Remove childs from`, parent);
   parent.innerHTML = '';
 }
 
 export function appendChild(parent, child) {
+  console.log(`Apend child`, parent, child);
   parent.appendChild(child);
 }
 
