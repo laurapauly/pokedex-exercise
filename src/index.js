@@ -2,7 +2,8 @@ import {
   createNoPokemons,
   createPokemonElements,
   setChild,
-  resetInput
+  resetInput,
+  removeChilds
 } from './api/elements';
 import { getPokemonsByName, getAllPokemons } from './api/pokemons';
 
@@ -33,9 +34,12 @@ searchInput.addEventListener('input', event => {
 
   //searchInput und event.target sind identisch!!
   //searchInput.value = event.target.value
-
-  console.log('Great! This event is fired:', event.target.value);
-
+  const searchValue = event.target.value;
+  const pokemons = getPokemonsByName(searchValue);
+  const pokemonElements = createPokemonElements(pokemons);
+  if (pokemons.length === 0) {
+    setChild(resultsElement, createNoPokemons());
+  } else setChild(resultsElement, pokemonElements);
   /**
    * Search for your pokemons now, create elements and add them to your results.
    */
