@@ -2,10 +2,13 @@ import {
   createNoPokemons,
   createPokemonElements,
   setChild,
-  resetInput,
-  removeChilds
+  resetInput
 } from './api/elements';
-import { getPokemonsByName, getAllPokemons } from './api/pokemons';
+import {
+  getPokemonsByName,
+  getAllPokemons,
+  sortPokemonsByName
+} from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
@@ -13,11 +16,11 @@ const resultsElement = document.querySelector('.results');
 
 // Get all pokemons
 const allPokemons = getAllPokemons();
-
+const allSortedPokemons = sortPokemonsByName(allPokemons);
 // Reset input and results
 resetInput(searchInput);
-const allPokemonElement = createPokemonElements(allPokemons);
-setChild(resultsElement, allPokemonElement);
+const allPokemonElements = createPokemonElements(allSortedPokemons);
+setChild(resultsElement, allPokemonElements);
 
 // Add event listeners
 
@@ -36,10 +39,15 @@ searchInput.addEventListener('input', event => {
   //searchInput.value = event.target.value
   const searchValue = event.target.value;
   const pokemons = getPokemonsByName(searchValue);
-  const pokemonElements = createPokemonElements(pokemons);
+
   if (pokemons.length === 0) {
-    setChild(resultsElement, createNoPokemons());
-  } else setChild(resultsElement, pokemonElements);
+    const noPokemonsElement = createNoPokemons();
+    setChild(resultsElement, noPokemonsElement);
+  } else {
+    const sortedPokemons = sortPokemonsByName(pokemons);
+    const pokemonElements = createPokemonElements(sortedPokemons);
+    setChild(resultsElement, pokemonElements);
+  }
   /**
    * Search for your pokemons now, create elements and add them to your results.
    */
