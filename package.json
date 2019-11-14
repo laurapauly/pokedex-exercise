@@ -4,6 +4,7 @@
   "description": "Search and filter arrays example",
   "main": "index.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
