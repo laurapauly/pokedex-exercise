@@ -6,7 +6,7 @@
  *
  * There are some helper functions which makes this task easier, but please try to implement your own filter and search logic.
  */
-import pokemons from 'json-pokemon';
+import pokemons from './pokemons.json';
 
 export function getAllPokemons() {
   return pokemons;
